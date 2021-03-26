@@ -29,6 +29,7 @@ public class Clasa implements Afisare {
     @Override
     public void Afisare() {
         System.out.println(denumire+", "+profil+", "+diriginte.getNume());
+        System.out.println();
         for (Elev elev : elevi) {
             elev.Afisare();
         }

@@ -8,6 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //Initializari
+
         Profesor profesor1 = new Profesor("Heroiu", "Bogdan");
         Profesor profesor2 = new Profesor("Tatulea", "Maria");
         Profesor profesor3 = new Profesor("Calinescu", "Ion");
@@ -121,28 +123,54 @@ public class Main {
         Liceu liceu1 = new Liceu("Dinicu Golescu",director1,clase1);
         Liceu liceu2 = new Liceu("Dan Barbilian",director2,clase2);
 
-        liceu1.Afisare();
+        //Apeluri pentru cele 10 actiunii
 
+        //1.media notelor unui liceu
         System.out.println("Medie liceului Dinicu Golescu este : "+liceu2.media_pe_liceu());
+        System.out.println();
 
+        //2.cea mai mare medie dintr-o clasa
         System.out.println("Cea mai mare medie din "+clasa1.getDenumire() +": "+ clasa1.cea_mai_mare_medie_clasa());
+        System.out.println();
 
+        //3.cea mai mare medie dintr-un liceu
         System.out.println("Cea mai mare medie din "+liceu2.getDenumire_liceu()+" :"+liceu2.cea_mai_mare_medie_liceu());
+        System.out.println();
 
+        //4.numarul total de absente ale unui elev
         System.out.println("Numarul total de absente ale elevului "+ elev1.getNume()+" "+elev1.getPrenume()+" sunt: "+elev1.absente_elev());
+        System.out.println();
 
+        //5.top n cei mai buni elevi dintr-o clasa
         clasa1.cei_mai_buni_elevi(4); // top 4 cei mai buni elevi dintr-o clasa
+        System.out.println();
 
+        //6.top n cei mai buni elevi dintr-un liceu
         liceu2.cei_mai_buni_elevi(4);
+        System.out.println();
 
+        //7.cel mai chiulangiu elevi dintr-un liceu
         System.out.println("Cel mai chiulangiu elev din liceul "+ liceu1.getDenumire_liceu()+ ", este " + liceu1.cel_mai_ciulangiu(liceu1).getNume()+" "+ liceu1.cel_mai_ciulangiu(liceu1).getPrenume()+", avand  "+liceu1.cel_mai_ciulangiu(liceu1).absente_elev()+" absente");
+        System.out.println();
 
+        //8.afisare elevi corigenti dintr-un liceu
         liceu2.corigentii(liceu2);
+        System.out.println();
 
-        liceu1.elevi_olimpici();
-
-        elev1.Afisare();
-
+        //9.pentru o clasa se va afisa dirigintele, numarul de elevi, media si numarul total de absente
         clasa1.detalii_clasa();
+        System.out.println();
+
+        //10.situatia unui elev dupa nume
+        elev1.Afisare();
+        System.out.println();
+
+        //11.afisare  elevi olimpici dintr-un liceu (care e in top3 la un concurs)
+        liceu1.elevi_olimpici();
+        System.out.println();
+
+        //12.se va afisa toti elevii dintr-un liceu cu mediile pentru fiecare materie
+        liceu1.Afisare();
+        System.out.println();
     }
 }
