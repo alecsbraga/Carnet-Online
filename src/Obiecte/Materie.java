@@ -1,8 +1,8 @@
 package Obiecte;
 
 public class Materie {
-    private String nume_materie;
-    private Profesor profesor;
+    private final String nume_materie;
+    private final Profesor profesor;
 
     public Materie(String nume_materie, Profesor profesor) {
         this.nume_materie = nume_materie;

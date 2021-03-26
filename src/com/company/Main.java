@@ -123,7 +123,7 @@ public class Main {
         Liceu liceu1 = new Liceu("Dinicu Golescu",director1,clase1);
         Liceu liceu2 = new Liceu("Dan Barbilian",director2,clase2);
 
-        //Apeluri pentru cele 10 actiunii
+        //Apeluri pentru cele 12 actiunii
 
         //1.media notelor unui liceu
         System.out.println("Medie liceului Dinicu Golescu este : "+liceu2.media_pe_liceu());

@@ -52,7 +52,7 @@ public class Elev {
     public void Afisare() {
         System.out.println(nume+", "+prenume+", "+data_nastere+", ");
         for(int i=0;i< materii.length;++i){
-            System.out.print(materii[i].getNume_materie()+", "+medii[i]+", "+absente[i]+"; ");
+            System.out.print(materii[i].getNume_materie()+" media:"+medii[i]+", absente:"+absente[i]+"; ");
         }
         if(concursuri != null)
         {
