@@ -15,7 +15,7 @@ public class Materie {
     }
 
 
-    public void Afisare() {
+    public void afisare() {
         System.out.print(nume_materie+", "+profesor.getNume()+", "+profesor.getPrenume());
     }
 }

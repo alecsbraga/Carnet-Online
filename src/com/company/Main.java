@@ -126,31 +126,31 @@ public class Main {
         //Apeluri pentru cele 12 actiunii
 
         //1.media notelor unui liceu
-        System.out.println("Medie liceului Dinicu Golescu este : "+liceu2.media_pe_liceu());
+        System.out.println("Medie liceului Dinicu Golescu este : "+liceu2.mediaPeLiceu());
         System.out.println();
 
         //2.cea mai mare medie dintr-o clasa
-        System.out.println("Cea mai mare medie din "+clasa1.getDenumire() +": "+ clasa1.cea_mai_mare_medie_clasa());
+        System.out.println("Cea mai mare medie din "+clasa1.getDenumire() +": "+ clasa1.ceaMaiMareMedieClasa());
         System.out.println();
 
         //3.cea mai mare medie dintr-un liceu
-        System.out.println("Cea mai mare medie din "+liceu2.getDenumire_liceu()+" :"+liceu2.cea_mai_mare_medie_liceu());
+        System.out.println("Cea mai mare medie din "+liceu2.getDenumire_liceu()+" :"+liceu2.ceaMaiMareMedieLiceu());
         System.out.println();
 
         //4.numarul total de absente ale unui elev
-        System.out.println("Numarul total de absente ale elevului "+ elev1.getNume()+" "+elev1.getPrenume()+" sunt: "+elev1.absente_elev());
+        System.out.println("Numarul total de absente ale elevului "+ elev1.getNume()+" "+elev1.getPrenume()+" sunt: "+elev1.absenteElev());
         System.out.println();
 
         //5.top n cei mai buni elevi dintr-o clasa
-        clasa1.cei_mai_buni_elevi(4); // top 4 cei mai buni elevi dintr-o clasa
+        clasa1.ceiMaiBuniElevi(4); // top 4 cei mai buni elevi dintr-o clasa
         System.out.println();
 
         //6.top n cei mai buni elevi dintr-un liceu
-        liceu2.cei_mai_buni_elevi(4);
+        liceu2.ceiMaiBuniElevi(4);
         System.out.println();
 
         //7.cel mai chiulangiu elevi dintr-un liceu
-        System.out.println("Cel mai chiulangiu elev din liceul "+ liceu1.getDenumire_liceu()+ ", este " + liceu1.cel_mai_ciulangiu(liceu1).getNume()+" "+ liceu1.cel_mai_ciulangiu(liceu1).getPrenume()+", avand  "+liceu1.cel_mai_ciulangiu(liceu1).absente_elev()+" absente");
+        System.out.println("Cel mai chiulangiu elev din liceul "+ liceu1.getDenumire_liceu()+ ", este " + liceu1.celMaiCiulangiu(liceu1).getNume()+" "+ liceu1.celMaiCiulangiu(liceu1).getPrenume()+", avand  "+liceu1.celMaiCiulangiu(liceu1).absenteElev()+" absente");
         System.out.println();
 
         //8.afisare elevi corigenti dintr-un liceu
@@ -158,7 +158,7 @@ public class Main {
         System.out.println();
 
         //9.pentru o clasa se va afisa dirigintele, numarul de elevi, media si numarul total de absente
-        clasa1.detalii_clasa();
+        clasa1.detaliiClasa();
         System.out.println();
 
         //10.situatia unui elev dupa nume
@@ -166,11 +166,11 @@ public class Main {
         System.out.println();
 
         //11.afisare  elevi olimpici dintr-un liceu (care e in top3 la un concurs)
-        liceu1.elevi_olimpici();
+        liceu1.eleviOlimpici();
         System.out.println();
 
         //12.se va afisa toti elevii dintr-un liceu cu mediile pentru fiecare materie
-        liceu1.Afisare();
+        liceu1.afisare();
         System.out.println();
     }
 }

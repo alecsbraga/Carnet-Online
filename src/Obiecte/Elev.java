@@ -56,13 +56,13 @@ public class Elev {
         }
         if(concursuri != null)
         {
-            concursuri.Afisare();
+            concursuri.afisare();
             System.out.print(", "+premiu);
         }
         System.out.println();
     }
 
-    public float medie_elev()
+    public float medieElev()
     {
         float medie = 0f;
         for(int i=1;i<medii.length;++i) {
@@ -70,7 +70,7 @@ public class Elev {
         }
         return medie/14;
     }
-    public int absente_elev(){
+    public int absenteElev(){
         int suma_absente = 0;
         for (int j : absente) {
             suma_absente += j;

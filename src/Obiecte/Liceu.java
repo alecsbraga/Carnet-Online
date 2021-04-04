@@ -21,32 +21,32 @@ public class Liceu implements Afisare {
     }
 
     @Override
-    public void Afisare() {
+    public void afisare() {
         System.out.println(Denumire_liceu+" ,"+director.getNume()+", "+ director.getPrenume());
         for (Clasa clasa : clase) {
-            clasa.Afisare();
+            clasa.afisare();
         }
     }
 
-    public float media_pe_liceu() {
+    public float mediaPeLiceu() {
         float medie = 0f;
         for (Clasa clasa : clase) {
-            medie += clasa.medie_pe_clasa();
+            medie += clasa.mediePeClasa();
         }
         return medie/2;
     }
 
-    public float cea_mai_mare_medie_liceu(){
+    public float ceaMaiMareMedieLiceu(){
         float maxim = 0f;
         for (Clasa clasa : clase) {
-            if (clasa.medie_pe_clasa() > maxim)
-                maxim = clasa.cea_mai_mare_medie_clasa();
+            if (clasa.mediePeClasa() > maxim)
+                maxim = clasa.ceaMaiMareMedieClasa();
         }
         return maxim;
     }
 
     @Override
-    public void cei_mai_buni_elevi(int n) {
+    public void ceiMaiBuniElevi(int n) {
         Elev[] elevi = new Elev[20];
         int numberofelevi = 0;
         for (Clasa clasa : clase)
@@ -59,25 +59,25 @@ public class Liceu implements Afisare {
         Arrays.sort(elevi, new Comparator<Elev>() {
             @Override
             public int compare(Elev o1, Elev o2)  {
-                if(o1.medie_elev() > o2.medie_elev())
+                if(o1.medieElev() > o2.medieElev())
                     return -1;
-                if(o1.medie_elev() < o2.medie_elev())
+                if(o1.medieElev() < o2.medieElev())
                     return 1;
                 return 0;
             }
         });
            for(int i=0;i< n;++i)
-               System.out.println( (i+1)+" " + elevi[i].getNume()+" "+elevi[i].getPrenume()+" media: "+elevi[i].medie_elev());
+               System.out.println( (i+1)+" " + elevi[i].getNume()+" "+elevi[i].getPrenume()+" media: "+elevi[i].medieElev());
     }
-    public Elev cel_mai_ciulangiu(Liceu l){
+    public Elev celMaiCiulangiu(Liceu l){
         int maxim = 0;
         Elev elev = new Elev();
         for(int i=0;i< l.clase.length;++i)
             for(int j=0; j<l.clase[i].getElevi().length;++j)
             {
-                if(l.clase[i].getElevi()[j].absente_elev() > maxim)
+                if(l.clase[i].getElevi()[j].absenteElev() > maxim)
                 {
-                    maxim = l.clase[i].getElevi()[j].absente_elev();
+                    maxim = l.clase[i].getElevi()[j].absenteElev();
                     elev = l.clase[i].getElevi()[j];
                 }
 
@@ -100,7 +100,7 @@ public class Liceu implements Afisare {
             }
     }
 
-    public void elevi_olimpici(){
+    public void eleviOlimpici(){
         System.out.println("Elevii olipici din liceul "+Denumire_liceu+", sunt :");
         for(int i=0;i< clase.length;++i)
             for(int j=0; j<clase[i].getElevi().length;++j)

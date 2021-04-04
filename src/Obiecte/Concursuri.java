@@ -19,7 +19,7 @@ public class Concursuri {
         return etapa;
     }
 
-    public void Afisare() {
+    public void afisare() {
         System.out.print(denumire+", "+etapa+", "+liceu_gazda);
     }
 }
