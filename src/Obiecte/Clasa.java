@@ -3,7 +3,6 @@ package Obiecte;
 import Servicii.Afisare;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class Clasa implements Afisare {
     final private String denumire;
@@ -61,16 +60,7 @@ public class Clasa implements Afisare {
     }
     @Override
     public void ceiMaiBuniElevi(int n) {
-        Arrays.sort(elevi, new Comparator<Elev>() {
-            @Override
-            public int compare(Elev o1, Elev o2) {
-                if(o1.medieElev() > o2.medieElev())
-                    return -1;
-                if(o1.medieElev() < o2.medieElev())
-                return 1;
-                    return 0;
-            }
-        });
+        Arrays.sort(elevi, (o1, o2) -> Float.compare(o2.medieElev(), o1.medieElev()));
         for( int i=0;i<n;++i)
         {
             System.out.println((i+1)+". "+elevi[i].getNume()+" "+elevi[i].getPrenume()+", media: "+elevi[i].medieElev() );
