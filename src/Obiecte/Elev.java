@@ -1,16 +1,18 @@
 package Obiecte;
 
+import java.util.ArrayList;
+
 public class Elev {
     private String nume;
     private String prenume;
     private String data_nastere;
-    private Materie[] materii;
+    private ArrayList<Materie> materii;
     protected int[] medii;
     protected int[] absente;
     private Concursuri concursuri;
     private int premiu;
 
-    public Elev(String nume, String prenume, String data_nastere, Materie[] materii, int[] medii, int[] absente, Concursuri concursuri, int premiu) {
+    public Elev(String nume, String prenume, String data_nastere, ArrayList<Materie> materii, int[] medii, int[] absente, Concursuri concursuri, int premiu) {
         this.nume = nume;
         this.prenume = prenume;
         this.data_nastere = data_nastere;
@@ -21,7 +23,7 @@ public class Elev {
         this.premiu = premiu;
     }
 
-    public Elev(String nume, String prenume, String data_nastere, Materie[] materii, int[] medii, int[] absente) {
+    public Elev(String nume, String prenume, String data_nastere, ArrayList<Materie> materii, int[] medii, int[] absente) {
         this.nume = nume;
         this.prenume = prenume;
         this.data_nastere = data_nastere;
@@ -51,8 +53,8 @@ public class Elev {
 
     public void Afisare() {
         System.out.println(nume+", "+prenume+", "+data_nastere+", ");
-        for(int i=0;i< materii.length;++i){
-            System.out.print(materii[i].getNume_materie()+" media:"+medii[i]+", absente:"+absente[i]+"; ");
+        for(int i=0;i< materii.size();++i){
+            System.out.print(materii.get(i).getNume_materie()+" media:"+medii[i]+", absente:"+absente[i]+"; ");
         }
         if(concursuri != null)
         {
@@ -65,8 +67,8 @@ public class Elev {
     public float medieElev()
     {
         float medie = 0f;
-        for(int i=1;i<medii.length;++i) {
-            medie += medii[i];
+        for (int j : medii) {
+            medie += j;
         }
         return medie/14;
     }

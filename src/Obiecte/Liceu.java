@@ -3,7 +3,6 @@ package Obiecte;
 import Servicii.Afisare;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class Liceu implements Afisare {
     private final String Denumire_liceu;
@@ -56,16 +55,7 @@ public class Liceu implements Afisare {
                 ++numberofelevi;
             }
 
-        Arrays.sort(elevi, new Comparator<Elev>() {
-            @Override
-            public int compare(Elev o1, Elev o2)  {
-                if(o1.medieElev() > o2.medieElev())
-                    return -1;
-                if(o1.medieElev() < o2.medieElev())
-                    return 1;
-                return 0;
-            }
-        });
+        Arrays.sort(elevi, (o1, o2) -> Float.compare(o2.medieElev(), o1.medieElev()));
            for(int i=0;i< n;++i)
                System.out.println( (i+1)+" " + elevi[i].getNume()+" "+elevi[i].getPrenume()+" media: "+elevi[i].medieElev());
     }
@@ -102,10 +92,10 @@ public class Liceu implements Afisare {
 
     public void eleviOlimpici(){
         System.out.println("Elevii olipici din liceul "+Denumire_liceu+", sunt :");
-        for(int i=0;i< clase.length;++i)
-            for(int j=0; j<clase[i].getElevi().length;++j)
-                if(clase[i].getElevi()[j].getConcursuri() != null)
-                clase[i].getElevi()[j].olimpic();
+        for (Clasa clasa : clase)
+            for (int j = 0; j < clasa.getElevi().length; ++j)
+                if (clasa.getElevi()[j].getConcursuri() != null)
+                    clasa.getElevi()[j].olimpic();
     }
 
 }
