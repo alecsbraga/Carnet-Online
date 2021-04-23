@@ -3,6 +3,8 @@ package Menu;
 import Obiecte.*;
 import Servicii.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -10,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class MainMenu {
-    public void apelare() throws InterruptedException {
+    public void apelare() throws InterruptedException, IOException {
         //Initializari
         CitireProfesori read0 = CitireProfesori.getInstance();
         Profesor[] profesori = new Profesor[10];
@@ -82,8 +84,7 @@ public class MainMenu {
         System.out.println("10: Situatia unui elev");
         System.out.println("11: Elevii olimpici dintr-un liceu");
         System.out.println("12: Informatii despre elevii dintr-un liceu");
-        System.out.println("13: Adaugare elev");
-        System.out.println("14: Exit");
+        System.out.println("13: Exit");
         System.out.println("------------------------------------------------------------");
         System.out.println();
         System.out.print("Tastati numarul optiunii: ");
@@ -96,7 +97,7 @@ public class MainMenu {
                 System.out.println("Optiune gresita/ nu exista. Alegeti alta sau tastati 13 pentru a inchide");
                 System.out.print("Tastati numarul optiunii: ");
                 optiune = scanner.nextInt();}
-        }while(optiune >= 14);
+        }while(optiune >= 13);
 
         do {
             switch (optiune) {
@@ -163,7 +164,7 @@ public class MainMenu {
                     System.out.println();
                     System.out.println("Alegi un elev pentru care doriti sa aflati numarul de absente");
                     for (int i = 0; i < 40; ++i)
-                        System.out.println(i + ": " + elevi[i].getNume()+" "+elevi[i].getNume());
+                        System.out.println(i + ": " + elevi[i].getNume() + " " + elevi[i].getNume());
                     System.out.print("Introduceti numarul elevului:");
                     int optiune4 = scanner.nextInt();
                     System.out.println("Numarul total de absente ale elevului " + elevi[optiune4].getNume() + " " + elevi[optiune4].getPrenume() + " sunt: " + elevi[optiune4].absenteElev());
@@ -214,7 +215,7 @@ public class MainMenu {
                         liceu1.ceiMaiBuniElevi(n);
 
                     } else {
-                            liceu2.ceiMaiBuniElevi(n);
+                        liceu2.ceiMaiBuniElevi(n);
                     }
                     System.out.println();
                 }
@@ -227,10 +228,10 @@ public class MainMenu {
                     System.out.print("Introduceti numarul:");
                     int optiune7 = scanner.nextInt();
                     if (optiune7 == 1) {
-                        System.out.println("Cel mai chiulangiu elev din liceul "+ liceu1.getDenumire_liceu()+ ", este " + liceu1.celMaiCiulangiu(liceu1).getNume()+" "+ liceu1.celMaiCiulangiu(liceu1).getPrenume()+", avand  "+liceu1.celMaiCiulangiu(liceu1).absenteElev()+" absente");
+                        System.out.println("Cel mai chiulangiu elev din liceul " + liceu1.getDenumire_liceu() + ", este " + liceu1.celMaiCiulangiu(liceu1).getNume() + " " + liceu1.celMaiCiulangiu(liceu1).getPrenume() + ", avand  " + liceu1.celMaiCiulangiu(liceu1).absenteElev() + " absente");
 
                     } else {
-                        System.out.println("Cel mai chiulangiu elev din liceul "+ liceu2.getDenumire_liceu()+ ", este " + liceu2.celMaiCiulangiu(liceu2).getNume()+" "+ liceu2.celMaiCiulangiu(liceu2).getPrenume()+", avand  "+liceu2.celMaiCiulangiu(liceu2).absenteElev()+" absente");
+                        System.out.println("Cel mai chiulangiu elev din liceul " + liceu2.getDenumire_liceu() + ", este " + liceu2.celMaiCiulangiu(liceu2).getNume() + " " + liceu2.celMaiCiulangiu(liceu2).getPrenume() + ", avand  " + liceu2.celMaiCiulangiu(liceu2).absenteElev() + " absente");
                     }
                     System.out.println();
                 }
@@ -283,7 +284,7 @@ public class MainMenu {
                     System.out.println();
                     System.out.println("Alegi un elev pentru care doriti sa aflati informatii");
                     for (int i = 0; i < 40; ++i)
-                        System.out.println(i + ": " + elevi[i].getNume()+" "+elevi[i].getPrenume());
+                        System.out.println(i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume());
                     System.out.print("Introduceti numarul elevului:");
                     int optiune10 = scanner.nextInt();
                     elevi[optiune10].Afisare();
@@ -321,34 +322,6 @@ public class MainMenu {
                     }
                     System.out.println();
                 }
-                case 13 -> {
-                    System.out.println();
-                    System.out.println("Introduceti numele elevului ");
-                    String nume = scanner.nextLine();
-                    System.out.println("Introduceti prenumele elevului ");
-                    String prenume = scanner.nextLine();
-                    System.out.println("Introduceti data de nastere a elevului ");
-                    String data = scanner.nextLine();
-                    int[] notenew = new int[14];
-                    int[] absentenew = new int [14];
-                    for(int i=0; i<14; ++i){
-                         System.out.println("Ce media si cate absente are elevul pe care doriti sa-l introduceti la materia "+ materii.get(i).getNume_materie() );
-                         int nota = scanner.nextInt();
-                         notenew[i]=nota;
-                         int absenta = scanner.nextInt();
-                         absentenew[i]=absenta;
-                    }
-                    System.out.println("Elevul pe care doriti sa-l introduceti este olimpic?");
-                    System.out.println("Daca da, tastati 1, daca nu, tastati 2");
-                    int optionconcurs = scanner.nextInt();
-                    if(optionconcurs == 2) {
-                        Elev elevNew = new Elev(nume, prenume, data, materii, notenew, absentenew);
-                    }
-                   // else{
-                        /// daca este olimpic
-                  //  }
-                    // se va scrie in fisierul elevilor dupa ce va fi asignat intr-o clasa si un liceu
-                }
 
             }
                     TimeUnit.MILLISECONDS.sleep(3000);
@@ -372,8 +345,7 @@ public class MainMenu {
                         System.out.println("10: Situatia unui elev");
                         System.out.println("11: Elevii olimpici dintr-un liceu");
                         System.out.println("12: Informatii despre elevii dintr-un liceu");
-                        System.out.println("13: Adaugare elev");
-                        System.out.println("14: Exit");
+                        System.out.println("13: Exit");
                         System.out.println("------------------------------------------------------------");
                         System.out.print("Tastati numarul optiunii: ");
                         optiune = scanner.nextInt();
