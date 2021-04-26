@@ -12,7 +12,7 @@ public class MainMenu implements Audit{
     public void apelare(Liceu liceu1, Liceu liceu2, Clasa clasa1, Clasa clasa2, Clasa clasa3, Clasa clasa4, Elev[] elevi) throws InterruptedException {
 
         System.out.println("------------------------------------------------------------");
-        System.out.println("--------------Va rugam sa alegeti optiune-------------------");
+        System.out.println("--------------Va rugam sa alegeti o optiune-------------------");
         System.out.println("1: Afisare media unui liceu");
         System.out.println("2: Cea mai mare medie dintr-o clasa dintr-un liceu");
         System.out.println("3: Cea mai mare medie dintr-un liceu");
@@ -284,7 +284,7 @@ public class MainMenu implements Audit{
                     int optiune13 = scanner.nextInt();
                     if (optiune13 == 1) {
                         System.out.println("------------------------------------------------------------");
-                        System.out.println("--------------Va rugam sa alegeti optiune-------------------");
+                        System.out.println("--------------Va rugam sa alegeti o optiune-------------------");
                         System.out.println("1: Afisare media unui liceu");
                         System.out.println("2: Cea mai mare medie dintr-o clasa");
                         System.out.println("3: Cea mai mare medie dintr-un liceu");
