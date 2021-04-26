@@ -3,16 +3,14 @@ package Menu;
 import Obiecte.*;
 import Servicii.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-public class MainMenu {
-    public void apelare() throws InterruptedException, IOException {
+public class MainMenu implements Audit{
+    public void apelare() throws InterruptedException {
         //Initializari
         CitireProfesori read0 = CitireProfesori.getInstance();
         Profesor[] profesori = new Profesor[10];
@@ -46,9 +44,6 @@ public class MainMenu {
             }
         }
 
-        Director director1= new Director("Parghel","Ion");
-        Director director2= new Director("Zaharia","Dan");
-
         CitireElevi read4 = CitireElevi.getInstance();
         Elev[] elevi = new Elev[40];
         read4.citire("src\\Fisiere\\Elevi.csv", elevi, materii, note, absente, concursuri,40);
@@ -66,6 +61,9 @@ public class MainMenu {
         Clasa[] clase1={clasa1,clasa2};
         Clasa[] clase2={clasa3,clasa4};
 
+        Director director1= new Director("Parghel","Ion");
+        Director director2= new Director("Zaharia","Dan");
+
         Liceu liceu1 = new Liceu("Dinicu Golescu",director1,clase1);
         Liceu liceu2 = new Liceu("Dan Barbilian",director2,clase2);
 
@@ -77,10 +75,10 @@ public class MainMenu {
         System.out.println("3: Cea mai mare medie dintr-un liceu");
         System.out.println("4: Numarul total de absente ale unui elev");
         System.out.println("5: Top n cei mai buni elevi dintr-o clasa");
-        System.out.println("6: Top n cei mai bunielevi dintr-un liceu");
+        System.out.println("6: Top n cei mai buni elevi dintr-un liceu");
         System.out.println("7: Cel mai chiulangiu elev dintr-un liceu");
         System.out.println("8: Elevi corigenti dintr-un liceu");
-        System.out.println("9: Detalii depsre o clasa");
+        System.out.println("9: Detalii despre o clasa");
         System.out.println("10: Situatia unui elev");
         System.out.println("11: Elevii olimpici dintr-un liceu");
         System.out.println("12: Informatii despre elevii dintr-un liceu");
@@ -103,6 +101,7 @@ public class MainMenu {
             switch (optiune) {
 
                 case 1 -> {
+                    audit("Afisare media unui liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -118,6 +117,7 @@ public class MainMenu {
                 }
 
                 case 2 -> {
+                    audit("Cea mai mare medie dintr-o clasa dintr-un liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -146,6 +146,7 @@ public class MainMenu {
                 }
 
                 case 3 -> {
+                    audit("Cea mai mare medie dintr-un liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -161,6 +162,7 @@ public class MainMenu {
                 }
 
                 case 4 -> {
+                    audit("Numarul total de absente ale unui elev");
                     System.out.println();
                     System.out.println("Alegi un elev pentru care doriti sa aflati numarul de absente");
                     for (int i = 0; i < 40; ++i)
@@ -172,6 +174,7 @@ public class MainMenu {
                 }
 
                 case 5 -> {
+                    audit("Top n cei mai buni elevi dintr-o clasa");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -202,6 +205,7 @@ public class MainMenu {
                 }
 
                 case 6 -> {
+                    audit("Top n cei mai bunielevi dintr-un liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -221,6 +225,7 @@ public class MainMenu {
                 }
 
                 case 7 -> {
+                    audit("Cel mai chiulangiu elev dintr-un liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -237,6 +242,7 @@ public class MainMenu {
                 }
 
                 case 8 -> {
+                    audit("Elevi corigenti dintr-un liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -253,6 +259,7 @@ public class MainMenu {
                 }
 
                 case 9 -> {
+                    audit("Detalii despre o clasa");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -265,7 +272,6 @@ public class MainMenu {
                     System.out.println("2: a XII-a B");
                     System.out.print("Introduceti numarul:");
                     int optiune9_1 = scanner.nextInt();
-                    System.out.print("Top cat doriti? Introduceti un numar:");
                     if (optiune9 == 1) {
                         if (optiune9_1 == 1)
                             clasa1.detaliiClasa();
@@ -281,6 +287,7 @@ public class MainMenu {
                 }
 
                 case 10 -> {
+                    audit("Situatia unui elev");
                     System.out.println();
                     System.out.println("Alegi un elev pentru care doriti sa aflati informatii");
                     for (int i = 0; i < 40; ++i)
@@ -292,6 +299,7 @@ public class MainMenu {
                 }
 
                 case 11 -> {
+                    audit("Elevii olimpici dintr-un liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -308,6 +316,7 @@ public class MainMenu {
                 }
 
                 case 12 -> {
+                    audit("Informatii despre elevii dintr-un liceu");
                     System.out.println();
                     System.out.println("Pentru ce liceu doriti?");
                     System.out.println("1: Dinicu Golescu");
@@ -338,10 +347,10 @@ public class MainMenu {
                         System.out.println("3: Cea mai mare medie dintr-un liceu");
                         System.out.println("4: Numarul total de absente ale unui elev");
                         System.out.println("5: Top n cei mai buni elevi dintr-o clasa");
-                        System.out.println("6: Top n cei mai bunielevi dintr-un liceu");
+                        System.out.println("6: Top n cei mai buni elevi dintr-un liceu");
                         System.out.println("7: Cel mai chiulangiu elev dintr-un liceu");
                         System.out.println("8: Elevi corigenti dintr-un liceu");
-                        System.out.println("9: Detalii depsre o clasa");
+                        System.out.println("9: Detalii despre o clasa");
                         System.out.println("10: Situatia unui elev");
                         System.out.println("11: Elevii olimpici dintr-un liceu");
                         System.out.println("12: Informatii despre elevii dintr-un liceu");
