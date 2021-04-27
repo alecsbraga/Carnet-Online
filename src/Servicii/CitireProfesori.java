@@ -21,6 +21,7 @@ public class CitireProfesori {
         try {
             Scanner in = new Scanner(new File(path));
             String linie;
+            in.nextLine();
             for (int i = 0; i < n; i++) {
                 linie = in.nextLine();
                 String[] aux = linie.split(", ");

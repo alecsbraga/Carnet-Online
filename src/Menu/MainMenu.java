@@ -274,6 +274,9 @@ public class MainMenu implements Audit{
                     }
                     System.out.println();
                 }
+                case 13 -> {
+                    System.exit(0);
+                }
 
             }
                     TimeUnit.MILLISECONDS.sleep(3000);

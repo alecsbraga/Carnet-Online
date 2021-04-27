@@ -13,6 +13,7 @@ public interface Audit {
             FileWriter filewriter = new FileWriter("src\\Fisiere\\Audit.csv",true);
             BufferedWriter buffwriter = new BufferedWriter(filewriter);
             buffwriter.write(actiune+", "+dateFormat.format(cal.getTime())+"\n");
+            buffwriter.flush();
             buffwriter.close();
         } catch (IOException e){
             e.printStackTrace();
