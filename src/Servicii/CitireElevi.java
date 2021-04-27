@@ -26,7 +26,7 @@ public class CitireElevi {
             for (int i = 0; i < n; i++) {
                 linie = in.nextLine();
                 String[] aux = linie.split(", ");
-                if(aux.length == 7 && !aux[5].equals("-") && !aux[6].equals("-")) {
+                if(!aux[5].equals("-") && !aux[6].equals("-")) {
                     elevi[i] = new Elev(aux[0], aux[1], aux[2], materii, note[Integer.parseInt(aux[3])], absente[Integer.parseInt(aux[4])], concursuri.get(Integer.parseInt(aux[5])), Integer.parseInt(aux[6]));
                 }
                 else{
