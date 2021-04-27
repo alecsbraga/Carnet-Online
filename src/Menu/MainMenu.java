@@ -274,9 +274,6 @@ public class MainMenu implements Audit{
                     }
                     System.out.println();
                 }
-                case 13 -> {
-                    System.exit(0);
-                }
 
             }
                     TimeUnit.MILLISECONDS.sleep(3000);
@@ -308,7 +305,7 @@ public class MainMenu implements Audit{
                         System.exit(0);
                     }
 
-            }while (optiune <= 14);
+            }while (optiune < 13);
         System.exit(0);
     }
 }
