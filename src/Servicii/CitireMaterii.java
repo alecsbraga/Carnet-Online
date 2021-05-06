@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class CitireMaterii {
     private static CitireMaterii read;
-    public CitireMaterii() {
+    private CitireMaterii() {
     }
 
     public static CitireMaterii getInstance(){

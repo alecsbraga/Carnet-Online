@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class CitireElevi {
     private static CitireElevi read;
-    public CitireElevi() {
+    private CitireElevi() {
     }
 
     public static CitireElevi getInstance(){

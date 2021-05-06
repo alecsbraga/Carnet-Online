@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class CitireDiriginti {
     private static CitireDiriginti read;
-    public CitireDiriginti() {
+    private CitireDiriginti() {
     }
 
     public static CitireDiriginti getInstance(){

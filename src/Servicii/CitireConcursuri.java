@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class CitireConcursuri {
     private static CitireConcursuri read;
-    public CitireConcursuri() {
+    private CitireConcursuri() {
     }
 
     public static CitireConcursuri getInstance(){

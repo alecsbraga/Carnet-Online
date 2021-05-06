@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class CitireProfesori {
     private static CitireProfesori read;
-    public CitireProfesori() {
+    private CitireProfesori() {
     }
 
     public static CitireProfesori getInstance(){
