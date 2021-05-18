@@ -12,28 +12,34 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        //Initializari
+        CitireBD citireBD = new CitireBD();
 
-        CitireProfesori read0 = CitireProfesori.getInstance();
         Profesor[] profesori = new Profesor[10];
-        read0.citire("src\\Fisiere\\Profesori.csv", profesori, 10);
+        citireBD.citireProfesori(profesori);
+        //CitireProfesori read0 = CitireProfesori.getInstance();
+        //read0.citire("src\\Fisiere\\Profesori.csv", profesori, 10);
 
-        CitireConcursuri read1 = CitireConcursuri.getInstance();
+
         ArrayList<Concursuri> concursuri = new ArrayList<>(3);
+        CitireConcursuri read1 = CitireConcursuri.getInstance();
         read1.citire("src\\Fisiere\\Concursuri.csv", concursuri, 3);
 
-        CitireDiriginti read2 = CitireDiriginti.getInstance();
-        Diriginte[] diriginti = new Diriginte[4];
-        read2.citire("src\\Fisiere\\Diriginti.csv", diriginti, 4);
 
-        CitireMaterii read3 = CitireMaterii.getInstance();
+        Diriginte[] diriginti = new Diriginte[4];
+        citireBD.citireDiriginti(diriginti);
+        //CitireDiriginti read2 = CitireDiriginti.getInstance();
+        //read2.citire("src\\Fisiere\\Diriginti.csv", diriginti, 4);
+
+
         ArrayList<Materie> materii = new ArrayList<>(14);
-        read3.citire("src\\Fisiere\\Materii.csv", materii, profesori, diriginti, 14);
+        citireBD.citireMaterii(materii,profesori,diriginti);
+        //CitireMaterii read3 = CitireMaterii.getInstance();
+        //read3.citire("src\\Fisiere\\Materii.csv", materii, profesori, diriginti, 14);
 
         int[][] note = new int[40][14];
         for(int i=0; i<40; ++i) {
             for (int j = 0; j < 14; ++j){
-                note[i][j]= ThreadLocalRandom.current().nextInt(4,  10);
+                note[i][j]= ThreadLocalRandom.current().nextInt(7,  10);
             }
         }
 
@@ -44,9 +50,11 @@ public class Main {
             }
         }
 
-        CitireElevi read4 = CitireElevi.getInstance();
+
         Elev[] elevi = new Elev[40];
-        read4.citire("src\\Fisiere\\Elevi.csv", elevi, materii, note, absente, concursuri,40);
+        citireBD.citireElevi(elevi,materii,note,absente,concursuri);
+        //CitireElevi read4 = CitireElevi.getInstance();
+        //read4.citire("src\\Fisiere\\Elevi.csv", elevi, materii, note, absente, concursuri,40);
 
         Elev[] elevi1 = Arrays.copyOfRange(elevi,0,10);
         Elev[] elevi2 = Arrays.copyOfRange(elevi,10,20);
@@ -71,4 +79,5 @@ public class Main {
         MainMenu menu =  new MainMenu();
         menu.apelare(liceu1, liceu2, clasa1, clasa2, clasa3, clasa4, elevi);
     }
+
 }

@@ -15,6 +15,14 @@ public class Liceu implements Afisare {
         this.clase = clase;
     }
 
+    public Director getDirector() {
+        return director;
+    }
+
+    public Clasa[] getClase() {
+        return clase;
+    }
+
     public String getDenumire_liceu() {
         return Denumire_liceu;
     }
