@@ -1,8 +1,6 @@
 package Servicii;
 
-
 import Obiecte.Elev;
-import Obiecte.Materie;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
