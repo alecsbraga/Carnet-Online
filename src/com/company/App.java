@@ -94,9 +94,12 @@ public class App extends JFrame{
 
                         frame.setContentPane(new AppElev(name, frame).getElevPanel());
                     }
-                    else
+                    else if(ID.equals("Profesor"))
                     {
                         frame.setContentPane(new AppProfesor(name, frame).getPanelProf());
+                    }
+                    else{
+                        frame.setContentPane(new AppDiriginte(name,frame).getPanelDirig());
                     }
                 }
                 else {

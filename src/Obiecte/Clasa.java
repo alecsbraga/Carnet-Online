@@ -17,6 +17,10 @@ public class Clasa implements Afisare {
         this.profil = profil;
     }
 
+    public Diriginte getDiriginte() {
+        return diriginte;
+    }
+
     public String getDenumire() {
         return denumire;
     }
