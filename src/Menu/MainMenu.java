@@ -54,7 +54,7 @@ public class MainMenu implements Audit{
                     if (optiune1 == 1) {
                         System.out.println("Medie liceului Dinicu Golescu este : " + liceu1.mediaPeLiceu());
                     } else {
-                        System.out.println("Medie liceului Dinicu Golescu este : " + liceu2.mediaPeLiceu());
+                        System.out.println("Medie liceului Dan Barbilian este : " + liceu2.mediaPeLiceu());
                     }
                     System.out.println();
                 }
@@ -77,13 +77,13 @@ public class MainMenu implements Audit{
                         if (optiune2_1 == 1)
                             System.out.println("Cea mai mare medie din " + clasa1.getDenumire() + ": " + clasa1.ceaMaiMareMedieClasa());
                         else
-                            System.out.println("Cea mai mare medie din " + clasa2.getDenumire() + ": " + clasa1.ceaMaiMareMedieClasa());
+                            System.out.println("Cea mai mare medie din " + clasa2.getDenumire() + ": " + clasa2.ceaMaiMareMedieClasa());
 
                     } else {
                         if (optiune2_1 == 1)
-                            System.out.println("Cea mai mare medie din " + clasa3.getDenumire() + ": " + clasa1.ceaMaiMareMedieClasa());
+                            System.out.println("Cea mai mare medie din " + clasa3.getDenumire() + ": " + clasa3.ceaMaiMareMedieClasa());
                         else
-                            System.out.println("Cea mai mare medie din " + clasa4.getDenumire() + ": " + clasa1.ceaMaiMareMedieClasa());
+                            System.out.println("Cea mai mare medie din " + clasa4.getDenumire() + ": " + clasa4.ceaMaiMareMedieClasa());
                     }
                     System.out.println();
                 }
@@ -109,7 +109,7 @@ public class MainMenu implements Audit{
                     System.out.println();
                     System.out.println("Alegi un elev pentru care doriti sa aflati numarul de absente");
                     for (int i = 0; i < 40; ++i)
-                        System.out.println(i + ": " + elevi[i].getNume() + " " + elevi[i].getNume());
+                        System.out.println(i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume());
                     System.out.print("Introduceti numarul elevului:");
                     int optiune4 = scanner.nextInt();
                     System.out.println("Numarul total de absente ale elevului " + elevi[optiune4].getNume() + " " + elevi[optiune4].getPrenume() + " sunt: " + elevi[optiune4].absenteElev());
@@ -134,15 +134,15 @@ public class MainMenu implements Audit{
                     int n = scanner.nextInt();
                     if (optiune5 == 1) {
                         if (optiune5_1 == 1)
-                            clasa1.ceiMaiBuniElevi(n);
+                            System.out.print(clasa1.ceiMaiBuniElevi(n));
                         else
-                            clasa2.ceiMaiBuniElevi(n);
+                            System.out.print(clasa2.ceiMaiBuniElevi(n));
 
                     } else {
                         if (optiune5_1 == 1)
-                            clasa3.ceiMaiBuniElevi(n);
+                            System.out.print(clasa3.ceiMaiBuniElevi(n));
                         else
-                            clasa4.ceiMaiBuniElevi(n);
+                            System.out.print(clasa4.ceiMaiBuniElevi(n));
                     }
                     System.out.println();
                 }
@@ -159,10 +159,10 @@ public class MainMenu implements Audit{
                     System.out.print("Top cat doriti? Introduceti un numar:");
                     int n = scanner.nextInt();
                     if (optiune6 == 1) {
-                        liceu1.ceiMaiBuniElevi(n);
+                        System.out.println(liceu1.ceiMaiBuniElevi(n));
 
                     } else {
-                        liceu2.ceiMaiBuniElevi(n);
+                        System.out.println(liceu2.ceiMaiBuniElevi(n));
                     }
                     System.out.println();
                 }
@@ -193,10 +193,10 @@ public class MainMenu implements Audit{
                     System.out.print("Introduceti numarul:");
                     int optiune8 = scanner.nextInt();
                     if (optiune8 == 1) {
-                        liceu1.corigentii(liceu2);
+                        System.out.println(liceu1.corigentii(liceu1));
 
                     } else {
-                        liceu2.corigentii(liceu2);
+                        System.out.println(liceu2.corigentii(liceu2));
                     }
                     System.out.println();
                 }
@@ -217,14 +217,14 @@ public class MainMenu implements Audit{
                     int optiune9_1 = scanner.nextInt();
                     if (optiune9 == 1) {
                         if (optiune9_1 == 1)
-                            clasa1.detaliiClasa();
+                            System.out.println(clasa1.detaliiClasa());
                         else
-                            clasa2.detaliiClasa();
+                            System.out.println(clasa2.detaliiClasa());
                     } else {
                         if (optiune9_1 == 1)
-                            clasa3.detaliiClasa();
+                            System.out.println(clasa3.detaliiClasa());
                         else
-                            clasa4.detaliiClasa();
+                            System.out.println(clasa4.detaliiClasa());
                     }
                     System.out.println();
                 }
@@ -237,7 +237,7 @@ public class MainMenu implements Audit{
                         System.out.println(i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume());
                     System.out.print("Introduceti numarul elevului:");
                     int optiune10 = scanner.nextInt();
-                    elevi[optiune10].Afisare();
+                    System.out.print(elevi[optiune10].Afisare());
                     System.out.println();
                 }
 
@@ -250,10 +250,10 @@ public class MainMenu implements Audit{
                     System.out.print("Introduceti numarul:");
                     int optiune11 = scanner.nextInt();
                     if (optiune11 == 1) {
-                        liceu1.eleviOlimpici();
+                        System.out.print(liceu1.eleviOlimpici());
 
                     } else {
-                        liceu2.eleviOlimpici();
+                        System.out.println(liceu2.eleviOlimpici());
                     }
                     System.out.println();
                 }

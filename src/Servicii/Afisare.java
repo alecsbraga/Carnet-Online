@@ -1,6 +1,6 @@
 package Servicii;
 
 public interface Afisare {
-    void afisare();
-    void ceiMaiBuniElevi(int n);
+    String afisare();
+    String ceiMaiBuniElevi(int n);
 }

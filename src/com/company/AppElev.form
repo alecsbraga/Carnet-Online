@@ -435,7 +435,7 @@
             </constraints>
             <properties>
               <background color="-12828863"/>
-              <text value="Nota"/>
+              <text value="         Nota"/>
             </properties>
           </component>
           <component id="fa368" class="javax.swing.JLabel">

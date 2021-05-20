@@ -26,12 +26,12 @@ public class Clasa implements Afisare {
     }
 
     @Override
-    public void afisare() {
-        System.out.println(denumire+", "+profil+", "+diriginte.getNume());
-        System.out.println();
+    public String afisare() {
+        StringBuilder result = new StringBuilder(denumire + ", " + profil + ", " + diriginte.getNume() + "\n");
         for (Elev elev : elevi) {
-            elev.Afisare();
+            result.append(elev.Afisare());
         }
+        return result.toString();
     }
 
     public float mediePeClasa(){
@@ -42,11 +42,10 @@ public class Clasa implements Afisare {
         return medie/9;
     }
 
-    public void detaliiClasa() {
+    public String detaliiClasa() {
         int total_absente = 0;
         for (Elev elev : elevi) total_absente += elev.absenteElev();
-        System.out.println("Pentru clasa"+denumire+" , avem diriginte pe "+diriginte.getNume()+" "+diriginte.getPrenume()+",, cu un numar de "+elevi.length+" elevi, media pe clasa:"+ mediePeClasa()+" , si un numar total de absente de "+total_absente);
-
+        return "Pentru clasa"+denumire+" , avem diriginte pe "+diriginte.getNume()+" "+diriginte.getPrenume()+",, cu un numar de "+elevi.length+" elevi, media pe clasa:"+ mediePeClasa()+" , si un numar total de absente de "+total_absente;
     }
 
     public float ceaMaiMareMedieClasa(){
@@ -59,11 +58,13 @@ public class Clasa implements Afisare {
         return maxim;
     }
     @Override
-    public void ceiMaiBuniElevi(int n) {
+    public String ceiMaiBuniElevi(int n) {
         Arrays.sort(elevi, (o1, o2) -> Float.compare(o2.medieElev(), o1.medieElev()));
-        for( int i=0;i<n;++i)
+        StringBuilder rezultat = new StringBuilder((1) + ". " + elevi[0].getNume() + " " + elevi[0].getPrenume() + ", media: " + elevi[0].medieElev() + "\n");
+        for( int i=1;i<n;++i)
         {
-            System.out.println((i+1)+". "+elevi[i].getNume()+" "+elevi[i].getPrenume()+", media: "+elevi[i].medieElev() );
+            rezultat.append(i + 1).append(". ").append(elevi[i].getNume()).append(" ").append(elevi[i].getPrenume()).append(", media: ").append(elevi[i].medieElev()).append("\n");
         }
+        return rezultat.toString();
     }
 }

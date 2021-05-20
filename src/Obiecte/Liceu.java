@@ -28,11 +28,12 @@ public class Liceu implements Afisare {
     }
 
     @Override
-    public void afisare() {
-        System.out.println(Denumire_liceu+" ,"+director.getNume()+", "+ director.getPrenume());
+    public String afisare() {
+        String result = Denumire_liceu+" ,"+director.getNume()+", "+ director.getPrenume()+"\n";
         for (Clasa clasa : clase) {
-            clasa.afisare();
+            result  = result + clasa.afisare() + "\n";
         }
+        return result;
     }
 
     public float mediaPeLiceu() {
@@ -53,7 +54,7 @@ public class Liceu implements Afisare {
     }
 
     @Override
-    public void ceiMaiBuniElevi(int n) {
+    public String ceiMaiBuniElevi(int n) {
         Elev[] elevi = new Elev[20];
         int numberofelevi = 0;
         for (Clasa clasa : clase)
@@ -64,9 +65,14 @@ public class Liceu implements Afisare {
             }
 
         Arrays.sort(elevi, (o1, o2) -> Float.compare(o2.medieElev(), o1.medieElev()));
-           for(int i=0;i< n;++i)
-               System.out.println( (i+1)+" " + elevi[i].getNume()+" "+elevi[i].getPrenume()+" media: "+elevi[i].medieElev());
+        String rezultat = ((1)+" " + elevi[0].getNume()+" "+elevi[0].getPrenume()+" media: "+elevi[0].medieElev() + "\n");
+        for( int i=1;i<n;++i)
+        {
+            rezultat= rezultat + (i+1)+" " + elevi[i].getNume()+" "+elevi[i].getPrenume()+" media: "+elevi[i].medieElev()+"\n" ;
+        }
+        return rezultat;
     }
+
     public Elev celMaiCiulangiu(Liceu l){
         int maxim = 0;
         Elev elev = new Elev();
@@ -83,8 +89,8 @@ public class Liceu implements Afisare {
         return elev;
     }
 
-    public void corigentii(Liceu l){
-        System.out.println("Elevi corigentii sunt: ");
+    public String corigentii(Liceu l){
+        String result = "Elevi corigentii sunt: "+ "\n" ;
         for(int i=0;i< l.clase.length;++i)
             for(int j=0; j<l.clase[i].getElevi().length;++j)
             { boolean da = false;
@@ -92,18 +98,21 @@ public class Liceu implements Afisare {
 
                     if (l.clase[i].getElevi()[j].getMedii()[k] <= 4) {
                         da = true;
-                                           }}
+                    }
+                }
                 if(da)
-                System.out.println(l.clase[i].getElevi()[j].getNume() + " " + l.clase[i].getElevi()[j].getPrenume());
+                result= result+l.clase[i].getElevi()[j].getNume() + " " + l.clase[i].getElevi()[j].getPrenume()+"\n";
             }
+        return result;
     }
 
-    public void eleviOlimpici(){
-        System.out.println("Elevii olipici din liceul "+Denumire_liceu+", sunt :");
+    public String eleviOlimpici(){
+         String result = "Elevii olipici din liceul "+Denumire_liceu+", sunt :"+"\n";
         for (Clasa clasa : clase)
             for (int j = 0; j < clasa.getElevi().length; ++j)
                 if (clasa.getElevi()[j].getConcursuri() != null)
-                    clasa.getElevi()[j].olimpic();
+                    result = result + clasa.getElevi()[j].olimpic()+"\n";
+    return result;
     }
 
 }

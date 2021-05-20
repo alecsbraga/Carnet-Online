@@ -89,9 +89,15 @@ public class App extends JFrame{
                 {
                     JOptionPane.showMessageDialog(null,"Successfully loged, "+idField.getText()+"!");
                     rootPanel.setVisible(false);
-                    String numeElev = idField.getText()+" "+passField.getText();
-                    frame.setContentPane(new AppElev(numeElev, frame).getElevPanel());
+                    String name = idField.getText() + " " + passField.getText();
+                    if(ID.equals("Elev")) {
 
+                        frame.setContentPane(new AppElev(name, frame).getElevPanel());
+                    }
+                    else
+                    {
+                        frame.setContentPane(new AppProfesor(name, frame).getPanelProf());
+                    }
                 }
                 else {
                     JOptionPane.showMessageDialog(null,"Wrong data!");

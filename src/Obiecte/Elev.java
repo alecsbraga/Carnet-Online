@@ -51,17 +51,18 @@ public class Elev {
         return medii;
     }
 
-    public void Afisare() {
-        System.out.println(nume+", "+prenume+", "+data_nastere+", ");
+    public String Afisare() {
+        StringBuilder result = new StringBuilder(nume + ", " + prenume + ", " + data_nastere + ", ");
+
         for(int i=0;i< materii.size();++i){
-            System.out.print(materii.get(i).getNume_materie()+" media:"+medii[i]+", absente:"+absente[i]+"; ");
+            result.append(materii.get(i).getNume_materie()).append(" media:").append(medii[i]).append(", absente:").append(absente[i]).append("; ");
         }
         if(concursuri != null)
         {
-            concursuri.afisare();
-            System.out.print(", "+premiu);
+             result.append(concursuri.getDenumire()).append(", ").append(premiu);
         }
-        System.out.println();
+        result.append("\n");
+        return result.toString();
     }
 
     public float medieElev()
@@ -80,9 +81,11 @@ public class Elev {
         return suma_absente;
     }
 
-    public void olimpic(){
+    public String olimpic(){
+        String result = "";
         if(premiu <= 3)
-        System.out.println("Elevul "+ nume +" "+prenume+" este olimpic la "+ concursuri.getDenumire()+", etapa "+ concursuri.getEtapa()+", cu premiul "+ premiu);
+            result = "Elevul "+ nume +" "+prenume+" este olimpic la "+ concursuri.getDenumire()+", etapa "+ concursuri.getEtapa()+", cu premiul "+ premiu;
+        return result;
     }
 }
 
