@@ -1,8 +1,10 @@
 package com.company;
 
 import Obiecte.*;
-import Servicii.CitireBD;
 import Servicii.CitireConcursuri;
+import Servicii.DeleteBD;
+import Servicii.LoadBD;
+import Servicii.UpdateBD;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -19,6 +21,7 @@ public class AppDiriginte {
     private JButton logoutButton;
     private JTextArea optionShowText;
     private JLabel clasaDirig;
+    private JTextArea textClasaDirig;
 
     public JPanel getPanelDirig() {
         return panelDirig;
@@ -26,15 +29,15 @@ public class AppDiriginte {
 
     public AppDiriginte(String nume, JFrame frame) throws SQLException {
 
-        frame.setSize(800,400);
-
+        frame.setSize(1200,700);
+        panelDirig.setVisible(true);
         nameDirig.setText(nume);
 
         // Initializari
-        CitireBD citireBD = new CitireBD();
+        LoadBD loadBD = new LoadBD();
 
         Profesor[] profesori = new Profesor[10];
-        citireBD.citireProfesori(profesori);
+        loadBD.loadProfesori(profesori);
 
         ArrayList<Concursuri> concursuri = new ArrayList<>(3);
         CitireConcursuri read1 = CitireConcursuri.getInstance();
@@ -42,10 +45,10 @@ public class AppDiriginte {
 
 
         Diriginte[] diriginti = new Diriginte[4];
-        citireBD.citireDiriginti(diriginti);
+        loadBD.loadDiriginti(diriginti);
 
         ArrayList<Materie> materii = new ArrayList<>(14);
-        citireBD.citireMaterii(materii,profesori,diriginti);
+        loadBD.loadMaterii(materii,profesori,diriginti);
 
         int[][] note = new int[40][14];
         for(int i=0; i<40; ++i) {
@@ -63,7 +66,7 @@ public class AppDiriginte {
 
 
         Elev[] elevi = new Elev[40];
-        citireBD.citireElevi(elevi,materii,note,absente,concursuri);
+        loadBD.loadElevi(elevi,materii,note,absente,concursuri);
 
         Elev[] elevi1 = Arrays.copyOfRange(elevi,0,10);
         Elev[] elevi2 = Arrays.copyOfRange(elevi,10,20);
@@ -84,17 +87,29 @@ public class AppDiriginte {
         Liceu liceu1 = new Liceu("Dinicu Golescu",director1,clase1);
         Liceu liceu2 = new Liceu("Dan Barbilian",director2,clase2);
 
-        if(nume.equals(clasa1.getDiriginte().getNume()))
+        if(nume.equals(clasa1.getDiriginte().getNume()+" "+clasa1.getDiriginte().getPrenume()))
+        {
             clasaDirig.setText(clasa1.getDenumire());
+            textClasaDirig.setText(clasa1.afisare());
+        }
         else
-        if(nume.equals(clasa2.getDiriginte().getNume()))
+        if(nume.equals(clasa2.getDiriginte().getNume()+" "+clasa2.getDiriginte().getPrenume()))
+        {
             clasaDirig.setText(clasa2.getDenumire());
+            textClasaDirig.setText(clasa2.afisare());
+        }
         else
-        if(nume.equals(clasa3.getDiriginte().getNume()))
+        if(nume.equals(clasa3.getDiriginte().getNume()+" "+clasa3.getDiriginte().getPrenume()))
+        {
             clasaDirig.setText(clasa3.getDenumire());
+            textClasaDirig.setText(clasa3.afisare());
+        }
         else
+        if(nume.equals(clasa4.getDiriginte().getNume()+" "+clasa4.getDiriginte().getPrenume()))
+        {
             clasaDirig.setText(clasa4.getDenumire());
-
+            textClasaDirig.setText(clasa4.afisare());
+        }
         list1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -105,6 +120,7 @@ public class AppDiriginte {
                     sel = list1.getModel().getElementAt(ix);
                 }
 
+                assert sel != null;
                 char c = sel.toString().charAt(0);
                 char cx = sel.toString().charAt(1);
                 String sir;
@@ -128,7 +144,7 @@ public class AppDiriginte {
                                 options[1]);
 
                         String result;
-                        if(n == 0) {
+                        if (n == 0) {
                             result = "Medie liceului Dinicu Golescu este : " + liceu1.mediaPeLiceu();
                         } else {
                             result = "Medie liceului Dan Barbilian este : " + liceu2.mediaPeLiceu();
@@ -416,6 +432,282 @@ public class AppDiriginte {
 
                     }
 
+                    case 13 -> {
+                        if (nume.equals(clasa1.getDiriginte().getNume() + " " + clasa1.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa1.getElevi().length];
+                            for (int i = 0; i < clasa1.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-l stergeti", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "elev");
+
+                            char c1 = opt.charAt(0);
+                            int n = Character.getNumericValue(c1);
+                            System.out.println(n + 1);
+                            DeleteBD deleteBD = new DeleteBD();
+                            deleteBD.deleteElev(n + 1);
+                            JOptionPane.showMessageDialog(null, "Elev sters cu succes!");
+                            try {
+                                panelDirig.setVisible(false);
+                                frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                            } catch (SQLException throwables) {
+                                throwables.printStackTrace();
+                            }
+
+                        } else if (nume.equals(clasa2.getDiriginte().getNume() + " " + clasa2.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa2.getElevi().length];
+                            for (int i = 0; i < clasa2.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-l stergeti", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "elev");
+
+                            char c1 = opt.charAt(0);
+                            int n = Character.getNumericValue(c1);
+                            System.out.println(n + 1);
+                            DeleteBD deleteBD = new DeleteBD();
+                            deleteBD.deleteElev(n + 1);
+                            JOptionPane.showMessageDialog(null, "Elev sters cu succes!");
+                            try {
+                                panelDirig.setVisible(false);
+                                frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                            } catch (SQLException throwables) {
+                                throwables.printStackTrace();
+                            }
+                        } else if (nume.equals(clasa3.getDiriginte().getNume() + " " + clasa3.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa3.getElevi().length];
+                            for (int i = 0; i < clasa3.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-l stergeti", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "elev");
+
+                            char c1 = opt.charAt(0);
+                            int n = Character.getNumericValue(c1);
+                            System.out.println(n + 1);
+                            DeleteBD deleteBD = new DeleteBD();
+                            deleteBD.deleteElev(n + 1);
+                            JOptionPane.showMessageDialog(null, "Elev sters cu succes!");
+                            try {
+                                panelDirig.setVisible(false);
+                                frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                            } catch (SQLException throwables) {
+                                throwables.printStackTrace();
+                            }
+                        } else if (nume.equals(clasa4.getDiriginte().getNume() + " " + clasa4.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa4.getElevi().length];
+                            for (int i = 0; i < clasa4.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-l stergeti", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "elev");
+
+                            char c1 = opt.charAt(0);
+                            int n = Character.getNumericValue(c1);
+                            System.out.println(n + 1);
+                            DeleteBD deleteBD = new DeleteBD();
+                            deleteBD.deleteElev(n + 1);
+                            JOptionPane.showMessageDialog(null, "Elev sters cu succes!");
+                            try {
+                                panelDirig.setVisible(false);
+                                frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                            } catch (SQLException throwables) {
+                                throwables.printStackTrace();
+                            }
+                        }
+
+                    }
+
+                    case 14 -> {
+                        UpdateBD updateBD = new UpdateBD();
+
+                        if (nume.equals(clasa1.getDiriginte().getNume() + " " + clasa1.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa1.getElevi().length];
+                            for (int i = 0; i < clasa1.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-i introduceti un concurs", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "elev");
+
+                            char c1 = opt.charAt(0);
+                            int id = Character.getNumericValue(c1);
+
+                            String[] elements1 = new String[concursuri.size()];
+                            for (int i = 0; i < concursuri.size(); ++i)
+                                elements1[i] = i + ": " + concursuri.get(i).getDenumire();
+                            String op1 = (String) JOptionPane.showInputDialog(null, "La ce concurs a participat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements1,
+                                    "concurs");
+
+                            String idConcurs = op1.substring(0,1);
+
+                            String premiu = (String) JOptionPane.showInputDialog(null, "Ce premiu a luat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    null,
+                                    "3");
+                            if ((premiu != null) && (premiu.length() > 0)) {
+
+                                updateBD.updateElev(id+1, idConcurs, premiu);
+                                JOptionPane.showMessageDialog(null, "Informatie actualizatat cu succes!");
+                                try {
+                                    panelDirig.setVisible(false);
+                                    frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                                } catch (SQLException throwables) {
+                                    throwables.printStackTrace();
+                                }
+                            }
+
+                        } else if (nume.equals(clasa2.getDiriginte().getNume() + " " + clasa2.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa2.getElevi().length];
+                            for (int i = 0; i < clasa2.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-l stergeti", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "elev");
+                            char c1 = opt.charAt(0);
+                            int id = Character.getNumericValue(c1);
+
+                            String[] elements1 = new String[concursuri.size()];
+                            for (int i = 0; i < concursuri.size(); ++i)
+                                elements1[i] = i + ": " + concursuri.get(i).getDenumire();
+                            String op1 = (String) JOptionPane.showInputDialog(null, "La ce concurs a participat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements1,
+                                    "concurs");
+
+                            String idConcurs = op1.substring(0,1);
+
+
+                            String premiu = (String) JOptionPane.showInputDialog(null, "Ce premiu a luat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    null,
+                                    "3");
+                            if ((premiu != null) && (premiu.length() > 0)) {
+
+                                updateBD.updateElev(id+1, idConcurs, premiu);
+                                JOptionPane.showMessageDialog(null, "Informatie actualizatat cu succes!");
+                                try {
+                                    panelDirig.setVisible(false);
+                                    frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                                } catch (SQLException throwables) {
+                                    throwables.printStackTrace();
+                                }
+                            }
+
+                        } else if (nume.equals(clasa3.getDiriginte().getNume() + " " + clasa3.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa3.getElevi().length];
+                            for (int i = 0; i < clasa3.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-l stergeti", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "concurs");
+                            char c1 = opt.charAt(0);
+                            int id = Character.getNumericValue(c1);
+
+                            String[] elements1 = new String[concursuri.size()];
+                            for (int i = 0; i < concursuri.size(); ++i)
+                                elements1[i] = i+ ": " + concursuri.get(i).getDenumire();
+                            String op1 = (String) JOptionPane.showInputDialog(null, "La ce concurs a participat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements1,
+                                    "concurs");
+
+                            String idConcurs = op1.substring(0,1);
+
+
+                            String premiu = (String) JOptionPane.showInputDialog(null, "Ce premiu a luat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    null,
+                                    "3");
+                            if ((premiu != null) && (premiu.length() > 0)) {
+
+                                updateBD.updateElev(id+1, idConcurs, premiu);
+                                JOptionPane.showMessageDialog(null, "Informatie actualizatat cu succes!");
+                                try {
+                                    panelDirig.setVisible(false);
+                                    frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                                } catch (SQLException throwables) {
+                                    throwables.printStackTrace();
+                                }
+                            }
+
+                        } else if (nume.equals(clasa4.getDiriginte().getNume() + " " + clasa4.getDiriginte().getPrenume())) {
+                            String[] elements = new String[clasa4.getElevi().length];
+                            for (int i = 0; i < clasa4.getElevi().length; ++i)
+                                elements[i] = i + ": " + elevi[i].getNume() + " " + elevi[i].getPrenume();
+                            String opt = (String) JOptionPane.showInputDialog(null, "Alegi un elev pentru care doriti sa-l stergeti", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements,
+                                    "elev");
+                            char c1 = opt.charAt(0);
+                            int id = Character.getNumericValue(c1);
+
+                            String[] elements1 = new String[concursuri.size()];
+                            for (int i = 0; i < concursuri.size(); ++i)
+                                elements1[i] = i + ": " + concursuri.get(i).getDenumire();
+                            String op1 = (String) JOptionPane.showInputDialog(null, "La ce concurs a participat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    elements1,
+                                    "concurs");
+
+                            String idConcurs = op1.substring(0,1);
+
+
+                            String premiu = (String) JOptionPane.showInputDialog(null, "Ce premiu a luat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                    null,
+                                    "3");
+                            if ((premiu != null) && (premiu.length() > 0)) {
+
+                                updateBD.updateElev(id+1, idConcurs, premiu);
+                                JOptionPane.showMessageDialog(null, "Informatie actualizatat cu succes!");
+                                try {
+                                    panelDirig.setVisible(false);
+                                    frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                                } catch (SQLException throwables) {
+                                    throwables.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+
+                    case 15 ->{
+                        UpdateBD updateBD = new UpdateBD();
+
+                        String[] elements = new String[materii.size()];
+                        for (int i = 0; i < materii.size(); ++i)
+                            elements[i] = i + ": " + materii.get(i).getNume_materie();
+                        String opt = (String) JOptionPane.showInputDialog(null, "Alegi o materie pe care doritit sa o midificati", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                elements,
+                                "materie");
+
+                        char c1 = opt.charAt(0);
+                        int id = Character.getNumericValue(c1);
+
+                        String[] elements1 = new String[profesori.length];
+                        for (int i = 0; i < profesori.length; ++i)
+                            elements1[i] = i + ": " + profesori[i].getNume()+" "+profesori[i].getPrenume();
+                        String opt1 = (String) JOptionPane.showInputDialog(null, "La ce concurs a participat?", "Ask", JOptionPane.PLAIN_MESSAGE, null,
+                                elements1,
+                                "concurs");
+
+                        char idProf = opt1.charAt(0);
+                        int idProfesor = Character.getNumericValue(idProf);
+
+                        try {
+                            updateBD.updateMaterie(id+1, idProfesor);
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        JOptionPane.showMessageDialog(null, "Informatie actualizatat cu succes!");
+                        try {
+                            panelDirig.setVisible(false);
+                            frame.setContentPane(new AppDiriginte(nume, frame).getPanelDirig());
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                    }
+
+                    case 16 -> {
+                            StringBuilder result = new StringBuilder(materii.get(0).getNume_materie() + "\n");
+                       for( int i = 1; i < materii.size();++i)
+                            result.append(materii.get(i).getNume_materie()).append("\n");
+
+                       optionShowText.setText(null);
+                       optionShowText.setText(result.toString());
+                    }
                 }
             }
         });

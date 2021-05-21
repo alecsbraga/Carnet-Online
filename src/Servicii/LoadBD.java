@@ -82,12 +82,12 @@ public class LoadBD {
     public void loadMaterii (ArrayList<Materie> materii, Profesor[] profesori, Diriginte[] diriginti) {
         try {
             Connection con = DriverManager.getConnection(url, username, password);
-            String query = "select * from DIRIGINTI";
+            String query = "select * from MATERII;";
             Statement stat = con.createStatement();
             ResultSet res = stat.executeQuery(query);
             int i = -1;
             while(res.next()){
-                String numeMaterie = res.getString("nume_materi");
+                String numeMaterie = res.getString("nume_materie");
                 int idProfesor = res.getInt("id_profesor");
                 ++i;
                 Materie materie;

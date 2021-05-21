@@ -25,7 +25,7 @@ public class AppProfesor {
 
     public AppProfesor(String nume, JFrame frame) throws SQLException {
 
-        frame.setSize(800,400);
+        frame.setSize(1200,500);
 
         nameProf.setText(nume);
 

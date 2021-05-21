@@ -16,7 +16,7 @@ public class UpdateBD {
     public void updateMaterie(int id, int id_profesor) throws SQLException {
         try {
             Connection con = DriverManager.getConnection(url, username, password);
-            String query = "update MATERII set id_profesor="+ id_profesor +" where id="+id;
+            String query = "update MATERII set id_profesor="+ id_profesor +" where id_materie="+id+";";
             PreparedStatement ps = con.prepareStatement(query);
             ps.execute();
             con.close();
@@ -25,10 +25,10 @@ public class UpdateBD {
         }
     }
 
-    public void updateElev(Elev[] elevi, int id, String idConcurs, String premiu){
+    public void updateElev(int id, String idConcurs, String premiu){
         try {
             Connection con = DriverManager.getConnection(url, username, password);
-            String query = "update ELEVI set idConcurs="+ idConcurs +" premiu="+ premiu +" where id="+id;
+            String query = "update ELEVI set idConcurs="+ idConcurs +", premiu="+ premiu +" where id="+id+";";
             PreparedStatement ps = con.prepareStatement(query);
             ps.execute();
             con.close();
